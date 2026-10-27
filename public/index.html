@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PENTEST SYNDICATE // OVERRIDE HUB</title>
+    <title>mdm_is_my_bitch // syndicate_node</title>
     <style>
         :root {
-            --bg-color: #060202;
-            --panel-bg: #0f0505;
-            --accent-red: #ff1e3c;
-            --accent-dim: #7a1220;
+            --bg-color: #030101;
+            --panel-bg: #090202;
+            --accent-red: #8B0000;
+            --accent-bright-red: #ff1e3c;
+            --accent-dim: #3a0808;
             --accent-yellow: #ffe600;
-            --text-glow: rgba(255, 30, 60, 0.4);
+            --text-glow: rgba(139, 0, 0, 0.4);
             --font-stack: 'Courier New', Courier, monospace;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--accent-red);
+            color: var(--accent-bright-red);
             font-family: var(--font-stack);
             margin: 0;
             padding: 20px;
@@ -34,20 +35,51 @@
             display: block;
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
             background-size: 100% 4px;
             z-index: 2;
             pointer-events: none;
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 20px;
+        .main-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             position: relative;
             z-index: 3;
+        }
+
+        .syndicate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .syndicate-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-bright-red);
+            text-transform: lowercase;
+            letter-spacing: -1px;
+            text-shadow: 0 0 10px rgba(255, 30, 60, 0.6);
+            margin: 0;
+        }
+
+        .syndicate-nav {
+            font-size: 0.7rem;
+            color: var(--accent-red);
+            text-align: right;
+            line-height: 1.4;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 20px;
         }
 
         @media (max-width: 768px) {
@@ -56,38 +88,29 @@
 
         .panel {
             border: 1px solid var(--accent-red);
-            box-shadow: 0 0 20px rgba(255, 30, 60, 0.15);
-            padding: 25px;
+            box-shadow: inset 0 0 15px rgba(139, 0, 0, 0.15), 0 0 20px rgba(139, 0, 0, 0.2);
+            padding: 20px;
             background-color: var(--panel-bg);
             box-sizing: border-box;
         }
 
-        .collective-banner {
-            font-size: 0.75rem;
-            color: var(--accent-dim);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 15px;
-            grid-column: 1 / -1;
-        }
-
         .pixel-art-box {
             border: 1px solid var(--accent-dim);
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100%;
             box-sizing: border-box;
+            min-height: 320px;
         }
 
         .pixel-finger {
-            width: 110px;
-            height: 120px;
+            width: 120px;
+            height: 130px;
             display: grid;
             grid-template-columns: repeat(11, 1fr);
             grid-template-rows: repeat(12, 1fr);
@@ -95,137 +118,187 @@
             margin-bottom: 15px;
         }
 
-        .pixel { background-color: transparent; }
+        .pixel { background-color: rgba(58, 8, 8, 0.3); }
         .pixel.on {
             background-color: var(--accent-yellow);
-            box-shadow: 0 0 8px rgba(255, 230, 0, 0.7);
+            box-shadow: 0 0 10px rgba(255, 230, 0, 0.8);
         }
 
         .pixel-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent-yellow);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 5px rgba(255, 230, 0, 0.4);
+            text-shadow: 0 0 6px rgba(255, 230, 0, 0.5);
+            margin-top: 10px;
         }
 
-        .telemetry-header {
-            font-size: 0.8rem;
-            color: var(--accent-dim);
-            border-bottom: 1px dashed var(--accent-dim);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0 0 10px 0;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
-
-        .status-line {
+        .section-header {
             font-size: 0.75rem;
-            color: var(--accent-dim);
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            color: var(--accent-red);
+            border-bottom: 1px dashed var(--accent-red);
+            padding-bottom: 6px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .form-group { margin: 15px 0; }
 
         label {
             display: block;
-            margin-bottom: 6px;
-            font-size: 0.8rem;
-            color: var(--accent-red);
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            color: var(--accent-bright-red);
+            letter-spacing: 1px;
+        }
+
+        .file-drop-zone {
+            border: 1px dashed var(--accent-red);
+            padding: 20px;
+            text-align: center;
+            background: #050101;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .file-drop-zone:hover {
+            border-color: var(--accent-bright-red);
+            background: #0c0202;
         }
 
         input[type="file"] {
-            background: #030101;
-            border: 1px solid var(--accent-dim);
-            color: var(--accent-red);
-            padding: 10px;
-            width: 100%;
-            box-sizing: border-box;
-            font-family: var(--font-stack);
-            cursor: pointer;
-            font-size: 0.8rem;
+            display: none;
+        }
+
+        .file-name-display {
+            font-size: 0.75rem;
+            color: var(--accent-yellow);
+            margin-top: 8px;
+            word-break: break-all;
         }
 
         button {
             background-color: transparent;
-            color: var(--accent-red);
-            border: 1px solid var(--accent-red);
+            color: var(--accent-bright-red);
+            border: 1px solid var(--accent-bright-red);
             padding: 12px 20px;
             font-family: var(--font-stack);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: all 0.2s ease;
+            box-shadow: 0 0 10px rgba(255, 30, 60, 0.2);
         }
 
         button:hover {
-            background-color: var(--accent-red);
+            background-color: var(--accent-bright-red);
             color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-red);
+            box-shadow: 0 0 20px var(--accent-bright-red);
         }
 
-        #output {
+        .logs-box {
             margin-top: 20px;
-            border-top: 1px dashed var(--accent-dim);
-            padding-top: 12px;
-            font-size: 0.75rem;
+            border: 1px solid var(--accent-dim);
+            background: #020000;
+            padding: 12px;
+            font-size: 0.7rem;
+            height: 120px;
+            overflow-y: auto;
+            color: #b33939;
+        }
+
+        .log-entry { margin-bottom: 4px; }
+        .log-time { color: #5a1212; margin-right: 8px; }
+
+        #output {
+            margin-top: 15px;
             word-break: break-all;
         }
 
-        .success-text { color: #ff4d6d; }
-        .error-text { color: #ff3333; }
+        .success-text { color: #ff4d6d; font-size: 0.75rem; }
+        .error-text { color: #ff3333; font-size: 0.75rem; }
 
         a.install-btn {
             display: block;
             text-decoration: none;
-            margin-top: 12px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-grid">
-        <div class="collective-banner">// PENTEST SYNDICATE // DISTRO_NODE_09 //</div>
-
-        <div class="panel">
-            <div class="pixel-art-box">
-                <div class="pixel-finger" id="pixelFinger"></div>
-                <div class="pixel-label">[ OVERRIDE ACTIVE ]</div>
+    <div class="main-container">
+        <header class="syndicate-header">
+            <h1 class="syndicate-title">mdm_is_my_bitch</h1>
+            <div class="syndicate-nav">
+                CONTROL<br>
+                DISTRIBUTE<br>
+                INSTALL<br>
+                REPEAT
             </div>
-        </div>
+        </header>
 
-        <div class="panel">
-            <div class="telemetry-header">SYS_TELEMETRY: SECURE_MESH</div>
-            <h1>OTA Payload Gateway</h1>
-            <div class="status-line">TARGET: MDM_BYPASS_AUDIT // STATUS: READY</div>
-
-            <form id="payloadForm">
-                <div class="form-group">
-                    <label for="ipaFile">> SELECT PAYLOAD</label>
-                    <input type="file" id="ipaFile" accept=".ipa" required>
+        <div class="dashboard-grid">
+            <!-- Left Panel: Pixel Art Middle Finger -->
+            <div class="panel">
+                <div class="pixel-art-box">
+                    <div class="pixel-finger" id="pixelFinger"></div>
+                    <div class="pixel-label">// SYNDICATE_ACTIVE</div>
                 </div>
-                <button type="submit" id="deployBtn">[ DEPLOY ]</button>
-            </form>
+            </div>
 
-            <div id="output">
-                <span class="status-line">> AWAITING .IPA PAYLOAD...</span>
+            <!-- Right Panel: Upload & Diagnostics -->
+            <div class="panel">
+                <div class="section-header">[-] OTA PAYLOAD GATEWAY</div>
+                <div style="font-size: 0.75rem; color: #a03030; margin-bottom: 15px;">
+                    Upload an iOS application package (.ipa) to generate an OTA installation link.
+                </div>
+
+                <form id="payloadForm">
+                    <div class="form-group">
+                        <label>> SELECT PAYLOAD</label>
+                        <div class="file-drop-zone" onclick="document.getElementById('ipaFile').click()">
+                            <span style="color: var(--accent-bright-red);">[ CLICK OR DROP .IPA FILE HERE ]</span>
+                            <input type="file" id="ipaFile" accept=".ipa" required onchange="handleFileSelect(this)">
+                            <div id="fileNameDisplay" class="file-name-display"></div>
+                        </div>
+                    </div>
+                    <button type="submit" id="deployBtn">[ DEPLOY ]</button>
+                </form>
+
+                <div id="output"></div>
+
+                <div class="section-header" style="margin-top: 20px;">[-] OPERATION LOG</div>
+                <div class="logs-box" id="terminalLogs">
+                    <div class="log-entry"><span class="log-time">[17:28:04]</span> err451 &raquo; system initialized</div>
+                    <div class="log-entry"><span class="log-time">[17:28:04]</span> core &raquo; upload interface loaded</div>
+                    <div class="log-entry"><span class="log-time"><span id="liveTime"></span></span> ui &raquo; awaiting .ipa payload...</div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Set dynamic time in logs
+        const now = new Date();
+        document.getElementById('liveTime').textContent = `[${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}]`;
+
+        function logEvent(tag, message) {
+            const logsBox = document.getElementById('terminalLogs');
+            const d = new Date();
+            const timeStr = `[${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}:${d.getSeconds().toString().padStart(2,'0')}]`;
+            const div = document.createElement('div');
+            div.className = 'log-entry';
+            div.innerHTML = `<span class="log-time">${timeStr}</span> ${tag} &raquo; ${message}`;
+            logsBox.appendChild(div);
+            logsBox.scrollTop = logsBox.scrollHeight;
+        }
+
+        // Render Pixel Art Middle Finger
         const fingerGrid = document.getElementById('pixelFinger');
         const pixelMap = [
             "00001110000",
@@ -250,6 +323,15 @@
             }
         });
 
+        function handleFileSelect(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const sizeMb = (file.size / (1024 * 1024)).toFixed(2);
+                document.getElementById('fileNameDisplay').textContent = `${file.name} // ${sizeMb} MB`;
+                logEvent('ui', `selected ${file.name}`);
+            }
+        }
+
         document.getElementById('payloadForm').onsubmit = async (e) => {
             e.preventDefault();
             const fileInput = document.getElementById('ipaFile');
@@ -258,10 +340,11 @@
 
             if (!file) return;
 
-            outputDiv.innerHTML = '<span class="status-line">> REQUESTING CLOUDFLARE UPLOAD TICKET...</span>';
+            outputDiv.innerHTML = '<span class="status-line" style="color:var(--accent-yellow);">> REQUESTING CLOUDFLARE UPLOAD TICKET...</span>';
+            logEvent('core', 'requesting presigned upload ticket from /api/upload');
 
             try {
-                // Step 1: Send ONLY the filename string as JSON to prevent 413 payload limits
+                // Send only filename metadata to prevent Vercel 413 body size limits
                 const res = await fetch('/api/upload', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -271,9 +354,10 @@
                 const data = await res.json();
                 if (!res.ok) throw new Error(data.error || 'Failed to generate ticket');
 
-                outputDiv.innerHTML = '<span class="status-line">> STREAMING .IPA DIRECTLY TO CLOUDFLARE R2...</span>';
+                outputDiv.innerHTML = '<span class="status-line" style="color:var(--accent-yellow);">> STREAMING .IPA DIRECTLY TO CLOUDFLARE R2...</span>';
+                logEvent('core', 'streaming binary payload directly to R2 bucket');
 
-                // Step 2: Upload the heavy .ipa binary directly to Cloudflare via the presigned URL
+                // Stream the binary payload directly to Cloudflare R2
                 const uploadRes = await fetch(data.uploadUrl, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/octet-stream' },
@@ -282,20 +366,24 @@
 
                 if (!uploadRes.ok) throw new Error('Direct upload to Cloudflare storage failed.');
 
-                // Step 3: Build the OTA install manifest link
+                logEvent('success', 'payload successfully secured in R2 storage');
+
+                // Generate OTA Manifest link
                 const host = window.location.host;
                 const protocol = window.location.protocol;
                 const manifestUrl = `${protocol}//${host}/api/manifest?url=${encodeURIComponent(data.publicFileUrl)}&name=${encodeURIComponent(file.name)}`;
                 const installUrl = `itms-services://?action=download-manifest&url=${encodeURIComponent(manifestUrl)}`;
 
                 outputDiv.innerHTML = `
-                    <p class="success-text">> PAYLOAD DEPLOYED SUCCESSFULLY.</p>
+                    <p class="success-text">> DEPLOYMENT SUCCESSFUL.</p>
                     <a href="${installUrl}" class="install-btn">
                         <button type="button">[ INITIALIZE TARGET INSTALL ]</button>
                     </a>
                 `;
+                logEvent('ui', 'OTA install manifest generated');
             } catch (err) {
                 outputDiv.innerHTML = `<p class="error-text">> SYSTEM_FAULT: ${err.message}</p>`;
+                logEvent('error', err.message);
             }
         };
     </script>
