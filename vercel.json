@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "headers": [
+    {
+      "source": "/api/manifest",
+      "headers": [{ "key": "Content-Type", "value": "text/xml" }]
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
+}
